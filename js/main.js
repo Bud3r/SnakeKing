@@ -1,7 +1,11 @@
 function init() {
+    // vitesse en pixel par seconde
+    var speed = 100;
+    var frequency = 20;
+    var period = 1000 / frequency;
+    var speedByPeriod = speed * period / 1000;
     var ySpeed = 0;
-    var xSpeed = 5;
-    var period = 50;
+    var xSpeed = speedByPeriod;
     // cree la scene
     var stage = new createjs.Stage("demoCanvas");
     // cree un forme
@@ -21,17 +25,17 @@ function init() {
     (ev) =>{
         
         if (ev.code ==='KeyW') {       
-            ySpeed= -5;
+            ySpeed= -speedByPeriod;
             xSpeed =0;
         }else if (ev.code ==='KeyS') {            
-            ySpeed= 5;
+            ySpeed= speedByPeriod;
             xSpeed =0;
         }else if (ev.code ==='KeyA') {            
             ySpeed= 0;
-            xSpeed =-5;
+            xSpeed =-speedByPeriod;
         }else if (ev.code ==='KeyD') {            
             ySpeed= 0;
-            xSpeed =5;
+            xSpeed =speedByPeriod;
         }
         
     });
