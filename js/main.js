@@ -1,5 +1,7 @@
 function init() {
-
+    var ySpeed = 0;
+    var xSpeed = 5;
+    var period = 50;
     // cree la scene
     var stage = new createjs.Stage("demoCanvas");
     // cree un forme
@@ -19,25 +21,36 @@ function init() {
     (ev) =>{
         
         if (ev.code ==='KeyW') {       
-            if (snake.y>=10) {     
-                snake.y -= 10;
-                stage.update();
-            }
+            ySpeed= -5;
+            xSpeed =0;
         }else if (ev.code ==='KeyS') {            
-            if (snake.y<280)   snake.y += 10;
-            stage.update();
+            ySpeed= 5;
+            xSpeed =0;
         }else if (ev.code ==='KeyA') {            
-           if (snake.x>=10) {
-            snake.x -= 10;
-            stage.update();
-           }
+            ySpeed= 0;
+            xSpeed =-5;
         }else if (ev.code ==='KeyD') {            
-         if (snake.x<480) {  
-             snake.x += 10;
-            stage.update();
-           }
+            ySpeed= 0;
+            xSpeed =5;
         }
         
     });
+
+    setInterval(()=> {
+         snake.x += xSpeed;   
+         snake.y += ySpeed;   
+         if (snake.x <0) {
+             snake.x=0;
+         } else if(snake.x>480) {
+             snake.x=480;
+         }
+         if (snake.y <0) {
+            snake.y=0;
+        } else if(snake.y>280) {
+            snake.y=280;
+        }
+         stage.update();
+    }, period);
+
 
 }
